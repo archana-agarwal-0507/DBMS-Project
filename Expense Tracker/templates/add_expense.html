@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Expense</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: white;
+      padding: 20px;
+      color: white;
+    }
+    .container {
+      background: white;
+      color: black;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #218838;
+      cursor: pointer;
+    }
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .register-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Expense</h2>
+    <form action="/submit" method="post">
+
+      <label for="amount">Amount:</label>
+      <input type="number" name="amount" id="amount" required>
+
+      <label for="date">Date:</label>
+      <input type="date" name="date" id="date" required>
+
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" rows="3" required></textarea>
+
+      <label for="category">Category:</label>
+      <select name="category_id" id="category" required>
+        <option value="">--Select--</option>
+        <option value="1">Food</option>
+        <option value="2">Travel</option>
+        <option value="3">Utilities</option>
+        <option value="4">Entertainment</option>
+        <option value="5">Other</option>
+      </select>
+
+      <label for="method_id">Payment Method:</label>
+      <select name="method_id" id="method_id" required>
+        <option value="">--Select--</option>
+        <option value="1">Cash</option>
+        <option value="2">Credit Card</option>
+        <option value="3">UPI</option>
+        <option value="4">Bank Transfer</option>
+      </select>
+
+      <label for="user_id">User_id:</label>
+      <select name="user_id" id="user_id" required>
+        <option value="">-- Select User ID --</option>
+        {% for user in users %}
+          <option value="{{ user[0] }}">{{ user[0] }}</option>
+        {% endfor %}
+      </select>
+      
+
+      <button type="submit">Submit Expense</button>
+    </form>
+    
+    <div class="register-link">
+      <p>New user? <a href="/register">Register here</a></p>
+    </div>
+  </div>
+</body>
+</html>
